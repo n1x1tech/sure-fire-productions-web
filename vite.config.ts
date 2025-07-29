@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/n1x1tech/sure-fire-productions-web/",
+  base: "/sure-fire-productions-web/",
   build: {
     rollupOptions: {
       output: {
