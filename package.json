@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-     "deploy": "npm run build && gh-pages -d dist",
+    "build": "vite build && copy .\\dist\\index.html .\\dist\\404.html",
+    "deploy": "npm run build && gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build && cp ./dist/index.html ./dist/404.html",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
-  },
+  }
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
