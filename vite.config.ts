@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/", // Keep this simple - GitHub Actions will handle the rest
+  base: process.env.NODE_ENV === 'production' ? '/your-repository-name/' : '/',
   build: {
     rollupOptions: {
       output: {
