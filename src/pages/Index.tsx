@@ -47,32 +47,6 @@ const Index = () => {
         return newErrors;
       });
     }
-  return (
-  <div>
-    <h1>Welcome to Sure Fire Productions</h1>
-    {/* Add your UI elements here */}
-    <p>Mouse position: {mousePosition.x}, {mousePosition.y}</p>
-    
-    {/* Example form using your state */}
-    <form onSubmit={(e) => e.preventDefault()}>
-      <input 
-        type="text" 
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Name"
-      />
-      <input 
-        type="email" 
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-  );
   };
   
   const handleSubmit = (e: React.FormEvent) => {
