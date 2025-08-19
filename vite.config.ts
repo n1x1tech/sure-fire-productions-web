@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/your-repository-name/' : '/',
+  base: "/", // Simple base path for Cloudflare Pages
   build: {
     rollupOptions: {
       output: {
