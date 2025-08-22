@@ -1,18 +1,11 @@
-# Welcome to your Lovable project
+# Welcome to your website
+Your site and url is hosted with CloudFlare.com.
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/119208c0-b5da-41e6-b006-d41215484471
+**URL**: surefireproductions.live
 
 ## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/119208c0-b5da-41e6-b006-d41215484471) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -62,12 +55,5 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/119208c0-b5da-41e6-b006-d41215484471) and click on Share -> Publish.
+Your site and url is hosted with CloudFlare.com. deployment happens automatically when new files are committed to GitHub. 
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
