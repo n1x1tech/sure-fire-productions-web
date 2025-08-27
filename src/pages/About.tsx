@@ -30,7 +30,7 @@ const About = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-white/70 max-w-2xl mx-auto"
             >
-              Passionate creators of unforgettable live event experiences since 1979.
+              Passionate creators of unforgettable live event experiences since 1999.
             </motion.p>
           </div>
         </div>
@@ -60,7 +60,7 @@ const About = () => {
                 <span className="text-surefire-red"> STORY</span>
               </h2>
               <p className="text-white/80 mb-6">
-                Sure Fire Productions was founded in 1979 by industry pioneers Jack Nolan and Maria Reyes with a vision to revolutionize live event production. What began as a small operation providing lighting for local music venues quickly evolved into one of the most respected production companies in the industry.
+                Sure Fire Productions was founded in 1999 by Stephen Corrigan with a vision to revolutionize live event production. What began as a small operation providing lighting for local music venues quickly evolved into one of the most respected production companies in the industry.
               </p>
               <p className="text-white/80 mb-6">
                 Through the decades, we've embraced technological advancements while maintaining our commitment to creative excellence. From the neon-drenched aesthetics of the 80s to today's cutting-edge digital innovations, we've consistently pushed boundaries to create unforgettable experiences.

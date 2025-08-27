@@ -395,7 +395,7 @@ const Index = () => {
             <ContactItem 
               icon={<MapPin />}
               title="Visit Us" 
-              content="Los Angeles, CA"
+              content="Knoxville, TN"
               link="#"
             />
           </div>
