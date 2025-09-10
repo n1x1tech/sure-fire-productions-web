@@ -175,9 +175,9 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard 
-              image="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3"
-              title="Neon Dreams Festival" 
-              category="Music Festival"
+              image="public/images/IMG_4873"
+              title="Larry Keel" 
+              category="Private Events"
             />
             <ProjectCard 
               image="https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
