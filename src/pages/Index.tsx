@@ -138,25 +138,26 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard 
-              icon={<Zap />}
-              title="Lighting Design" 
-              description="State-of-the-art lighting solutions featuring lasers, intelligent fixtures, and atmospheric effects."
-            />
-            <ServiceCard 
               icon={<Music />}
               title="Sound Engineering" 
               description="Crystal clear audio systems perfectly tuned to your venue and performance needs."
             />
             <ServiceCard 
-              icon={<Video />}
-              title="Video Production" 
-              description="LED walls, projection mapping, and content creation for immersive visual experiences."
+              icon={<Zap />}
+              title="Lighting Design" 
+              description="State-of-the-art lighting solutions to make your event an experience to remember."
             />
             <ServiceCard 
               icon={<Calendar />}
               title="Event Planning" 
               description="Comprehensive event planning and production management from concept to execution."
             />
+            <ServiceCard 
+              icon={<Video />}
+              title="Video Production" 
+              description="Live streaming, documentation, and content creation to make your event your own."
+            />
+            
           </div>
         </div>
       </section>
