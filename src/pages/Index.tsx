@@ -174,19 +174,19 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard 
-              image="public/images/IMG_4873.jpeg"
-              title="World Class Talent" 
+            <ProjectCard
+              image="/images/IMG_4873.jpg"
+              title="World Class Talent"
               category="Larry Keel"
             />
-            <ProjectCard 
-              image="public/images/IMG_6696.jpeg"
-              title="Private Events" 
+            <ProjectCard
+              image="/images/IMG_6696.JPEG"
+              title="Private Events"
               category="Greek Life"
             />
-            <ProjectCard 
-              image="public/images/IMG_6694.jpeg"
-              title="Concert Production" 
+            <ProjectCard
+              image="/images/IMG_6694.JPEG"
+              title="Concert Production"
               category="Every Venue"
             />
           </div>
