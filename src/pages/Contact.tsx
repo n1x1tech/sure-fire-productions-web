@@ -106,20 +106,14 @@ const Contact = () => {
                 <ContactItem 
                   icon={<Mail />}
                   title="Email Us" 
-                  content="info@surefireproductions.com"
-                  link="mailto:info@surefireproductions.com"
+                  content="surefireproductionstn@gmail.com"
+                  link="mailto:surefireproductionstn@gmail.com"
                 />
                 <ContactItem 
                   icon={<Phone />}
                   title="Call Us" 
-                  content="+1 (555) 123-4567"
-                  link="tel:+15551234567"
-                />
-                <ContactItem 
-                  icon={<MapPin />}
-                  title="Visit Us" 
-                  content="123 Neon Street, Downtown, Los Angeles, CA 90012"
-                  link="#"
+                  content="+1 (865) 766-7331"
+                  link="tel:+18657667331"
                 />
               </div>
               

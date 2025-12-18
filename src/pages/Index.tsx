@@ -175,18 +175,18 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard 
-              image="public/images/IMG_4873"
+              image="public/images/IMG_4873.jpg"
               title="Larry Keel" 
               category="Private Events"
             />
             <ProjectCard 
-              image="https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
-              title="Tech Summit 2023" 
-              category="Corporate Event"
+              image="public/images/IMG_6696.jpg"
+              title="Greek Life" 
+              category="Private Events"
             />
             <ProjectCard 
-              image="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec"
-              title="Laser Symphony" 
+              image="public/images/IMG_6694.jpg"
+              title="Live Productions" 
               category="Concert Production"
             />
           </div>
@@ -199,38 +199,6 @@ const Index = () => {
               GET IN TOUCH
               <ChevronRight className="inline-block ml-2 transition-transform group-hover:translate-x-1" />
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="testimonials" className="py-20 bg-surefire-dark-gray relative">
-        <div className="laser-beam h-0.5 w-full rotate-[5deg] top-10 -left-10 opacity-30"></div>
-        <div className="laser-beam h-0.5 w-full -rotate-[5deg] bottom-10 -right-10 opacity-30"></div>
-        
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-wider">
-              <span className="text-white">CLIENT</span>
-              <span className="text-surefire-blue"> TESTIMONIALS</span>
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              quote="Sure Fire transformed our corporate gala with their incredible lighting design. The attention to detail was impeccable." 
-              author="Sarah Johnson"
-              company="Vector Industries"
-            />
-            <TestimonialCard 
-              quote="Working with the Sure Fire team was a game-changer for our festival. Their technical expertise and creativity exceeded our expectations." 
-              author="Mark Reynolds"
-              company="Pulse Music Group"
-            />
-            <TestimonialCard 
-              quote="From concept to execution, Sure Fire Productions delivered an unforgettable experience for our product launch event." 
-              author="Lisa Chen"
-              company="Horizon Tech"
-            />
           </div>
         </div>
       </section>
@@ -384,14 +352,14 @@ const Index = () => {
             <ContactItem 
               icon={<Mail />}
               title="Email Us" 
-              content="info@surefireproductions.com"
-              link="mailto:info@surefireproductions.com"
+              content="surefireproductionstn@gmail.com"
+              link="mailto:surefireproductionstn@gmail.com"
             />
             <ContactItem 
               icon={<Phone />}
               title="Call Us" 
-              content="+1 (555) 123-4567"
-              link="tel:+15551234567"
+              content="+1 (865) 766-7331"
+              link="tel:+18657667331"
             />
             <ContactItem 
               icon={<MapPin />}

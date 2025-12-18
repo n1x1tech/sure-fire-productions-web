@@ -46,9 +46,6 @@ const Navbar = () => {
               <a href="#projects" className="px-3 py-2 text-sm font-medium tracking-widest text-white hover:text-surefire-green transition-colors">
                 PROJECTS
               </a>
-              <a href="#testimonials" className="px-3 py-2 text-sm font-medium tracking-widest text-white hover:text-surefire-green transition-colors">
-                TESTIMONIALS
-              </a>
               <a href="#contact" className="px-3 py-2 text-sm font-medium tracking-widest text-white hover:text-surefire-green transition-colors">
                 CONTACT
               </a>
@@ -78,9 +75,6 @@ const Navbar = () => {
           </a>
           <a href="#projects" className="block px-3 py-3 text-base font-medium tracking-widest border-b border-surefire-green/20 text-white hover:text-surefire-green" onClick={() => setIsOpen(false)}>
             PROJECTS
-          </a>
-          <a href="#testimonials" className="block px-3 py-3 text-base font-medium tracking-widest border-b border-surefire-green/20 text-white hover:text-surefire-green" onClick={() => setIsOpen(false)}>
-            TESTIMONIALS
           </a>
           <a href="#contact" className="block px-3 py-3 text-base font-medium tracking-widest border-b border-surefire-green/20 text-white hover:text-surefire-green" onClick={() => setIsOpen(false)}>
             CONTACT
