@@ -15,6 +15,7 @@ const Contact = () => {
   
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -42,22 +43,28 @@ const Contact = () => {
     }
   };
   
-   const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
 
     if (validateForm()) {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "5d4f30d8-dfd3-4cd1-b60d-c15508edddcf",
-          ...formData
-        })
-      });
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: "5d4f30d8-dfd3-4cd1-b60d-c15508edddcf",
+            ...formData
+          })
+        });
 
-      if (response.ok) {
-        setFormSubmitted(true);
-        // reset form...
+        if (response.ok) {
+          setFormSubmitted(true);
+        } else {
+          setSubmitError("Failed to send message. Please try again.");
+        }
+      } catch (error) {
+        setSubmitError("Network error. Please check your connection and try again.");
       }
     }
   };
@@ -239,6 +246,12 @@ const Contact = () => {
                         {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                       </div>
                       
+                      {submitError && (
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500 rounded-md">
+                          <p className="text-red-500">{submitError}</p>
+                        </div>
+                      )}
+
                       <button
                         type="submit"
                         className="px-8 py-4 bg-surefire-red text-white font-bold tracking-wider rounded hover:bg-surefire-red/90 transition-all duration-300 flex items-center"
