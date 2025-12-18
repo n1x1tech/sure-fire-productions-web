@@ -412,14 +412,12 @@ const TestimonialCard = ({ quote, author, company }: { quote: string, author: st
 );
 
 const ContactItem = ({ icon, title, content, link }: { icon: React.ReactNode; title: string; content: string; link: string }) => (
-  <div className="flex items-start">
-    <div className="text-surefire-green mr-4 mt-1">
+  <div className="flex flex-col items-center text-center">
+    <div className="text-surefire-green mb-3">
       {icon}
     </div>
-    <div>
-      <h3 className="text-white font-bold text-lg mb-1">{title}</h3>
-      <a href={link} className="text-white/70 hover:text-surefire-green transition-colors">{content}</a>
-    </div>
+    <h3 className="text-white font-bold text-lg mb-1">{title}</h3>
+    <a href={link} className="text-white/70 hover:text-surefire-green transition-colors">{content}</a>
   </div>
 );
 
