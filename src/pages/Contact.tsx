@@ -42,21 +42,23 @@ const Contact = () => {
     }
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
-      // Simulate form submission
-      setTimeout(() => {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "5d4f30d8-dfd3-4cd1-b60d-c15508edddcf",
+          ...formData
+        })
+      });
+
+      if (response.ok) {
         setFormSubmitted(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          eventType: "",
-          message: ""
-        });
-      }, 1000);
+        // reset form...
+      }
     }
   };
   
