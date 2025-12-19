@@ -54,17 +54,20 @@ const Contact = () => {
     setSubmitError(null);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("access_key", "13ed2f61-5c05-49f9-aaba-6b7f79dc26e9");
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("eventType", formData.eventType);
-      formDataToSend.append("message", formData.message);
-
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formDataToSend
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "13ed2f61-5c05-49f9-aaba-6b7f79dc26e9",
+          subject: "Surefire Productions Contact Form",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          eventType: formData.eventType,
+          message: formData.message,
+        }),
       });
 
       const data = await response.json();
