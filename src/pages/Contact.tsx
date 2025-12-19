@@ -1,12 +1,7 @@
-
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
-import { useState } from 'react';
-
-export default function ContactForm() {
-  const [result, setResult] = useState("");
+import { Mail, Phone, Send, CheckCircle } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,27 +11,28 @@ const Contact = () => {
     eventType: "",
     message: ""
   });
-  
+
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid";
     if (!formData.message.trim()) newErrors.message = "Message is required";
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user types
     if (errors[name]) {
       setErrors(prev => {
@@ -46,37 +42,51 @@ const Contact = () => {
       });
     }
   };
-  
-  const onSubmit = async (event) => {
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setResult("Sending....");
-    const formData = new FormData(event.target);
-    formData.append("access_key", "5d4f30d8-dfd3-4cd1-b60d-c15508edddcf");
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+    if (!validateForm()) {
+      return;
+    }
 
-    const data = await response.json();
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      setResult("Error");
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("access_key", "5d4f30d8-dfd3-4cd1-b60d-c15508edddcf");
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("eventType", formData.eventType);
+      formDataToSend.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          eventType: "",
+          message: ""
+        });
+      } else {
+        setSubmitError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitError("Failed to send message. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <input type="text" name="name" required/>
-      <input type="email" name="email" required/>
-      <textarea name="message" required></textarea>
-      <button type="submit">Submit Form</button>
-      <span>{result}</span>
-    </form>
-  );
-}
   
   return (
     <Layout>
@@ -263,9 +273,10 @@ const Contact = () => {
 
                       <button
                         type="submit"
-                        className="px-8 py-4 bg-surefire-red text-white font-bold tracking-wider rounded hover:bg-surefire-red/90 transition-all duration-300 flex items-center"
+                        disabled={isSubmitting}
+                        className="px-8 py-4 bg-surefire-red text-white font-bold tracking-wider rounded hover:bg-surefire-red/90 transition-all duration-300 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        SEND MESSAGE
+                        {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                         <Send className="ml-2 h-5 w-5" />
                       </button>
                     </form>
