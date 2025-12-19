@@ -1,7 +1,10 @@
+'use client';
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Mail, Phone, Send, CheckCircle } from "lucide-react";
+
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY!;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -45,19 +48,28 @@ const Contact = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitError(null);
+
+    // Check honeypot
+    const formEl = event.currentTarget;
+    const formDataObj = new FormData(formEl);
+    if (formDataObj.get("botcheck")) {
+      setSubmitError("Submission blocked.");
+      return;
+    }
 
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitError(null);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
           access_key: "13ed2f61-5c05-49f9-aaba-6b7f79dc26e9",
@@ -70,9 +82,18 @@ const Contact = () => {
         }),
       });
 
-      const data = await response.json();
+      let data: any = null;
+      try {
+        data = await response.json();
+      } catch {
+        // If JSON parsing fails, keep data as null
+      }
 
-      if (data.success) {
+      if (!response.ok) {
+        throw new Error(data?.message || `Request failed (HTTP ${response.status})`);
+      }
+
+      if (data?.success) {
         setFormSubmitted(true);
         setFormData({
           name: "",
@@ -81,11 +102,12 @@ const Contact = () => {
           eventType: "",
           message: ""
         });
+        setErrors({});
       } else {
-        setSubmitError(data.message || "Something went wrong. Please try again.");
+        throw new Error(data?.message || "Something went wrong. Please try again.");
       }
-    } catch (error) {
-      setSubmitError("Failed to send message. Please check your connection and try again.");
+    } catch (err: any) {
+      setSubmitError(err?.message || "Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -189,6 +211,15 @@ const Contact = () => {
                     <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
                     
                     <form onSubmit={handleSubmit}>
+                      {/* Honeypot for bot protection */}
+                      <input
+                        type="checkbox"
+                        name="botcheck"
+                        style={{ display: "none" }}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                           <label htmlFor="name" className="block text-white mb-2">Name *</label>
