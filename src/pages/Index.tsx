@@ -14,6 +14,8 @@ const Index = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,11 +51,36 @@ const Index = () => {
     }
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      setTimeout(() => {
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "3a55d3fb-9ca3-4c19-b3ec-f9b46aad5905",
+          subject: "Surefire Productions Contact Form",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          eventType: formData.eventType,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
         setFormSubmitted(true);
         setFormData({
           name: "",
@@ -62,7 +89,13 @@ const Index = () => {
           eventType: "",
           message: ""
         });
-      }, 1000);
+      } else {
+        setSubmitError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitError("Failed to send message. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -320,13 +353,20 @@ const Index = () => {
                     />
                     {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                   </div>
-                  
+
+                  {submitError && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500 rounded-md">
+                      <p className="text-red-500">{submitError}</p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-surefire-green text-white font-bold tracking-wider rounded hover:bg-surefire-green/90 transition-all duration-300 neon-border flex items-center justify-center"
+                    disabled={isSubmitting}
+                    className="w-full px-8 py-4 bg-surefire-green text-white font-bold tracking-wider rounded hover:bg-surefire-green/90 transition-all duration-300 neon-border flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5 mr-2" />
-                    SEND MESSAGE
+                    {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                   </button>
                 </form>
               )}
